@@ -1,0 +1,314 @@
+/* src/styles/Progress.css */
+
+.progress {
+    width: 100%;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #111827;
+}
+
+/* Вкладки для перемикання видів статистики */
+.progress-tabs {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+}
+
+.progress-tab {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    position: relative;
+    white-space: nowrap;
+}
+
+.progress-tab:hover {
+    color: #4b5563;
+}
+
+.progress-tab.active {
+    color: #2563eb;
+}
+
+.progress-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #2563eb;
+}
+
+/* Загальна статистика */
+.general-stats {
+    width: 100%;
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .stats-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.stat-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #6b7280;
+}
+
+.detailed-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .detailed-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.problem-words-card,
+.recent-tests-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.problem-words-list,
+.recent-tests-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.problem-word-item,
+.recent-test-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.problem-word-original {
+    font-weight: 500;
+}
+
+.problem-word-translated {
+    color: #6b7280;
+    margin-left: 0.5rem;
+}
+
+.problem-word-errors {
+    color: #ef4444;
+}
+
+.recent-test-type {
+    font-weight: 500;
+}
+
+.recent-test-details {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.recent-test-score {
+    font-weight: 500;
+}
+
+.recent-test-score.good {
+    color: #10b981;
+}
+
+.recent-test-score.medium {
+    color: #f59e0b;
+}
+
+.recent-test-score.poor {
+    color: #ef4444;
+}
+
+/* Статистика по словах */
+.categories-stats {
+    margin-bottom: 2rem;
+}
+
+.categories-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.category-item {
+    width: 100%;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+
+.category-name {
+    color: #4b5563;
+    text-transform: capitalize;
+}
+
+.category-count {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 0.625rem;
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: #2563eb;
+    border-radius: 9999px;
+}
+
+/* Таблиця всіх слів */
+.table-container {
+    overflow-x: auto;
+}
+
+.words-table,
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.words-table th,
+.words-table td,
+.history-table th,
+.history-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.words-table th,
+.history-table th {
+    background-color: #f9fafb;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #6b7280;
+    letter-spacing: 0.05em;
+}
+
+.words-table tr,
+.history-table tr {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.correct-count {
+    color: #10b981;
+}
+
+.incorrect-count {
+    color: #ef4444;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+/* Історія тестів */
+.score-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+}
+
+.score-badge.good {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.score-badge.medium {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.score-badge.poor {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.empty-history-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.empty-history-message {
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.empty-history-hint {
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+.empty-state {
+    color: #6b7280;
+    text-align: center;
+}

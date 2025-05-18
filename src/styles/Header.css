@@ -1,0 +1,83 @@
+/* src/styles/Header.css */
+
+.header {
+    background-color: #11204d; /* Змінено на темно-синій колір, як на знімку екрана */
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.25rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Стилі для контейнера іконок */
+.icons-container {
+    display: flex;
+    gap: 12px;
+}
+
+/* Стилі для кнопок-іконок */
+.icon-button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Стилі для самих іконок */
+.header-icon {
+    font-size: 1.25rem;
+    color: #ffffff;
+}
+
+.header-title {
+    text-align: left;
+}
+
+.header-title h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+}
+
+.header-title p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-title {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .icons-container {
+        margin-top: 0.5rem;
+    }
+}

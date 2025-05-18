@@ -1,0 +1,297 @@
+/* src/styles/Test.css */
+
+.test {
+    width: 100%;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #111827;
+}
+
+/* Вибір категорії */
+.category-chooser {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 0.25rem;
+}
+
+.form-select {
+    width: 100%;
+    max-width: 16rem;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.words-count {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+/* Картки режимів тестів */
+.test-modes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .test-modes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.test-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.test-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.test-card-body {
+    padding: 1.25rem;
+}
+
+.test-card-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.test-card-text {
+    color: #6b7280;
+    margin-bottom: 1rem;
+    min-height: 2.5rem;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Стилі для тесту в процесі */
+.test-in-progress {
+    width: 100%;
+}
+
+.test-progress-bar {
+    margin-bottom: 1rem;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.question-counter {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.correct-counter {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.question-container {
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.question-text {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.word-highlight {
+    color: #2563eb;
+    font-weight: 700;
+}
+
+/* Стилі для режиму з варіантами відповідей */
+.options-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .options-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.option-button {
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid #d1d5db;
+    background-color: white;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.option-button:hover:not(:disabled) {
+    background-color: #f3f4f6;
+}
+
+.option-button.selected {
+    background-color: #dbeafe;
+    border-color: #93c5fd;
+}
+
+.option-button.correct {
+    background-color: #dcfce7;
+    border-color: #86efac;
+}
+
+.option-button.incorrect {
+    background-color: #fee2e2;
+    border-color: #fca5a5;
+}
+
+.option-button:disabled {
+    cursor: default;
+}
+
+/* Стилі для режиму введення відповіді */
+.write-answer-container {
+    margin-bottom: 1rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* Повідомлення з результатом відповіді */
+.result-message {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+}
+
+.result-message.correct {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.result-message.incorrect {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+/* Кнопки дій */
+.test-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: #4b5563;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Стилі для результатів тесту */
+.test-results {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.result-summary {
+    margin-bottom: 1.5rem;
+}
+
+.score-circle-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+
+.score-circle {
+    height: 12rem;
+    width: 12rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid #f3f4f6;
+}
+
+.score-content {
+    text-align: center;
+}
+
+.score-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.score-label {
+    color: #6b7280;
+}
+
+.score-text {
+    font-size: 1.25rem;
+}
