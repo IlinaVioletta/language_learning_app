@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrash, FaEdit, FaSave, FaTimes } from 'react-icons/fa';
 import '../styles/Vocabulary.css';
+import { defaultVocabulary } from '../data/dictionary';
 
 function Vocabulary() {
     const [originalWord, setOriginalWord] = useState('');
     const [translatedWord, setTranslatedWord] = useState('');
     const [category, setCategory] = useState('general');
-    const [words, setWords] = useState(() => JSON.parse(localStorage.getItem('vocabulary')) || []);
+    const [words, setWords] = useState(() => {
+        // Перевіряємо, чи є щось у localStorage
+        const savedWords = JSON.parse(localStorage.getItem('vocabulary')) || [];
+        // Якщо словник порожній, використовуємо defaultVocabulary
+        if (savedWords.length === 0) {
+            // Записуємо defaultVocabulary в localStorage
+            localStorage.setItem('vocabulary', JSON.stringify(defaultVocabulary));
+            return defaultVocabulary;
+        }
+        return savedWords;
+    });
     const [editingIndex, setEditingIndex] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState('all');
@@ -45,17 +56,39 @@ function Vocabulary() {
 
     // Видалення слова
     const deleteWord = (index) => {
-        const updatedWords = [...words];
-        updatedWords.splice(index, 1);
-        setWords(updatedWords);
+        // Отримуємо слово для видалення з фільтрованого масиву
+        const wordToDelete = filteredWords[index];
+
+        // Знаходимо його індекс у повному масиві
+        const originalIndex = words.findIndex(word =>
+            word.original === wordToDelete.original &&
+            word.translated === wordToDelete.translated
+        );
+
+        if (originalIndex !== -1) {
+            const updatedWords = [...words];
+            updatedWords.splice(originalIndex, 1);
+            setWords(updatedWords);
+        }
     };
 
     // Початок редагування
     const startEditing = (index) => {
-        setEditingIndex(index);
-        setOriginalWord(words[index].original);
-        setTranslatedWord(words[index].translated);
-        setCategory(words[index].category);
+        // Отримуємо слово для редагування з фільтрованого масиву
+        const wordToEdit = filteredWords[index];
+
+        // Знаходимо його індекс у повному масиві
+        const originalIndex = words.findIndex(word =>
+            word.original === wordToEdit.original &&
+            word.translated === wordToEdit.translated
+        );
+
+        if (originalIndex !== -1) {
+            setEditingIndex(originalIndex);
+            setOriginalWord(words[originalIndex].original);
+            setTranslatedWord(words[originalIndex].translated);
+            setCategory(words[originalIndex].category);
+        }
     };
 
     // Збереження змін

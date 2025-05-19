@@ -1,6 +1,6 @@
+// Окремий файл з повним словником
 // src/data/dictionary.js
 
-// Повний словник з усіма словами
 export const fullDictionary = [
     // Найуживаніші слова (рівень A1)
     { original: 'a', translated: 'неозначений артикль', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
@@ -198,5 +198,5 @@ export const fullDictionary = [
     { original: 'network', translated: 'мережа', category: 'tech', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
 ];
 
-// Використовуємо весь словник одразу
+
 export const defaultVocabulary = fullDictionary;

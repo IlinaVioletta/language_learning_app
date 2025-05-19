@@ -13,6 +13,9 @@ function Progress() {
 
         setVocabulary(vocabData);
         setTestHistory(historyData);
+
+        // Виведемо дані для діагностики
+        console.log("Завантажена історія тестів:", historyData);
     }, []);
 
     // Загальна кількість слів
@@ -39,6 +42,19 @@ function Progress() {
 
     // Останні 5 тестів
     const recentTests = [...testHistory].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+
+    // Функція для визначення типу тесту
+    const getTestTypeText = (mode) => {
+        if (mode === 'choice') {
+            return 'Тест з варіантами';
+        } else if (mode === 'matching') {
+            return 'Тест на співставлення';
+        } else if (mode === 'write') {
+            return 'Тест на введення';
+        } else {
+            return `Невідомий тип тесту (${mode})`;
+        }
+    };
 
     return (
         <div className="progress">
@@ -123,7 +139,7 @@ function Progress() {
                                         <li key={index} className="recent-test-item">
                                             <div className="recent-test-info">
                                                 <div className="recent-test-type">
-                                                    {test.mode === 'choice' ? 'Тест з варіантами' : 'Тест на введення'}
+                                                    {getTestTypeText(test.mode)}
                                                 </div>
                                                 <div className="recent-test-details">
                                                     {new Date(test.date).toLocaleDateString()}
@@ -246,7 +262,7 @@ function Progress() {
                                                 {new Date(test.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                                             </td>
                                             <td>
-                                                {test.mode === 'choice' ? 'Тест з варіантами' : 'Тест на введення'}
+                                                {getTestTypeText(test.mode)}
                                             </td>
                                             <td className="capitalize">
                                                 {test.category === 'all' ? 'Всі категорії' : test.category}

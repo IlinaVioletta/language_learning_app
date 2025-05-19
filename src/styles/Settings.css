@@ -1,0 +1,203 @@
+/* src/styles/Settings.css */
+
+.settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.settings-modal {
+    background-color: white;
+    border-radius: 0.75rem;
+    width: 100%;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+.settings-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #111827;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s;
+}
+
+.close-button:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.settings-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.settings-section {
+    margin-bottom: 2rem;
+}
+
+.settings-section:last-child {
+    margin-bottom: 0;
+}
+
+.settings-section h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #1f2937;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.settings-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.settings-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.375rem;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.settings-button:hover {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+.settings-button:active {
+    transform: translateY(1px);
+}
+
+.settings-button.primary {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+}
+
+.settings-button.primary:hover {
+    background-color: #1d4ed8;
+}
+
+.settings-button.danger {
+    background-color: white;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.settings-button.danger:hover {
+    background-color: #fef2f2;
+    border-color: #fca5a5;
+}
+
+.settings-icon {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+
+.settings-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #f9fafb;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+
+@media (max-width: 640px) {
+    .settings-actions {
+        flex-direction: column;
+    }
+
+    .settings-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Стилі для Help компонента */
+.help-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #374151;
+}
+
+.help-section p {
+    margin-bottom: 1rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.help-section ul {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+.help-section li {
+    margin-bottom: 0.5rem;
+    color: #4b5563;
+    line-height: 1.6;
+    padding-left: 0.5rem;
+}
