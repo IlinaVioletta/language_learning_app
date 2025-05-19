@@ -6,6 +6,7 @@ import ConfirmDialog from './ConfirmDialog';
 function Settings({ onClose }) {
     const [showConfirmProblemWords, setShowConfirmProblemWords] = useState(false);
     const [showConfirmTestHistory, setShowConfirmTestHistory] = useState(false);
+    const [showConfirmResetAll, setShowConfirmResetAll] = useState(false);
 
     // Функція для очищення проблемних слів
     const clearProblemWords = () => {
@@ -56,6 +57,32 @@ function Settings({ onClose }) {
         window.location.reload();
     };
 
+    // Функція для повного скидання всіх даних
+    const resetAllData = () => {
+        setShowConfirmResetAll(true);
+    };
+
+    // Підтвердження повного скидання
+    const confirmResetAllData = () => {
+        // Видаляємо всі дані додатку з localStorage
+        localStorage.removeItem('testHistory');
+        // Зберігаємо словник, але скидаємо всю статистику
+        const vocabulary = JSON.parse(localStorage.getItem('vocabulary')) || [];
+        const resetVocabulary = vocabulary.map(word => ({
+            ...word,
+            correctCount: 0,
+            incorrectCount: 0,
+            lastTested: null
+        }));
+        localStorage.setItem('vocabulary', JSON.stringify(resetVocabulary));
+
+        // Закриваємо діалог
+        setShowConfirmResetAll(false);
+
+        // Перезавантажуємо сторінку
+        window.location.reload();
+    };
+
     return (
         <div className="settings-overlay">
             <div className="settings-modal">
@@ -75,6 +102,9 @@ function Settings({ onClose }) {
                             </button>
                             <button className="settings-button danger" onClick={clearTestHistory}>
                                 <FaTrash className="settings-icon" /> Очистити історію тестів
+                            </button>
+                            <button className="settings-button danger" onClick={resetAllData}>
+                                <FaTrash className="settings-icon" /> Скинути всі дані
                             </button>
                         </div>
                     </div>
@@ -102,6 +132,15 @@ function Settings({ onClose }) {
                     message="Ви впевнені, що хочете видалити всю історію тестів?"
                     onConfirm={confirmClearTestHistory}
                     onCancel={() => setShowConfirmTestHistory(false)}
+                />
+            )}
+
+            {/* Діалог підтвердження скидання всіх даних */}
+            {showConfirmResetAll && (
+                <ConfirmDialog
+                    message="Ви впевнені, що хочете скинути всі дані? Це видалить історію тестів та всю статистику слів!"
+                    onConfirm={confirmResetAllData}
+                    onCancel={() => setShowConfirmResetAll(false)}
                 />
             )}
         </div>

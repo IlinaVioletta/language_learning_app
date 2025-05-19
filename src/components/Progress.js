@@ -31,14 +31,19 @@ function Progress() {
     // Статистика тестів
     const totalTests = testHistory.length;
     const averageScore = totalTests > 0
-        ? Math.round(testHistory.reduce((sum, test) => sum + (test.score / test.total) * 100, 0) / totalTests)
+        ? Math.round(testHistory.reduce((sum, test) => {
+            const percent = test.displayPercent !== undefined
+                ? test.displayPercent
+                : Math.round((test.score / test.total) * 100);
+            return sum + percent;
+        }, 0) / totalTests)
         : 0;
 
     // Слова з найбільшою кількістю помилок
     const problemWords = [...vocabulary]
         .filter(word => (word.incorrectCount || 0) > 0)
         .sort((a, b) => (b.incorrectCount || 0) - (a.incorrectCount || 0))
-        .slice(0, 5);
+        .slice(0, 10); // Показуємо до 10 слів з помилками
 
     // Останні 5 тестів
     const recentTests = [...testHistory].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
@@ -47,13 +52,27 @@ function Progress() {
     const getTestTypeText = (mode) => {
         if (mode === 'choice') {
             return 'Тест з варіантами';
-        } else if (mode === 'matching') {
-            return 'Тест на співставлення';
         } else if (mode === 'write') {
             return 'Тест на введення';
         } else {
             return `Невідомий тип тесту (${mode})`;
         }
+    };
+
+    // Функція для відображення відсотка результату
+    const getDisplayPercent = (test) => {
+        if (test.displayPercent !== undefined) {
+            return test.displayPercent;
+        }
+        return Math.round((test.score / test.total) * 100);
+    };
+
+    // Функція для визначення класу стилю результату
+    const getScoreClass = (test) => {
+        const percent = getDisplayPercent(test);
+        if (percent >= 70) return 'good';
+        if (percent >= 40) return 'medium';
+        return 'poor';
     };
 
     return (
@@ -146,14 +165,8 @@ function Progress() {
                                                     {test.category !== 'all' && ` • ${test.category}`}
                                                 </div>
                                             </div>
-                                            <div className={`recent-test-score ${
-                                                (test.score / test.total) >= 0.7
-                                                    ? 'good'
-                                                    : (test.score / test.total) >= 0.4
-                                                        ? 'medium'
-                                                        : 'poor'
-                                            }`}>
-                                                {test.score}/{test.total} ({Math.round((test.score / test.total) * 100)}%)
+                                            <div className={`recent-test-score ${getScoreClass(test)}`}>
+                                                {test.score}/{test.total} ({getDisplayPercent(test)}%)
                                             </div>
                                         </li>
                                     ))}
@@ -268,15 +281,9 @@ function Progress() {
                                                 {test.category === 'all' ? 'Всі категорії' : test.category}
                                             </td>
                                             <td>
-                                                    <span className={`score-badge ${
-                                                        (test.score / test.total) >= 0.7
-                                                            ? 'good'
-                                                            : (test.score / test.total) >= 0.4
-                                                                ? 'medium'
-                                                                : 'poor'
-                                                    }`}>
-                                                        {test.score}/{test.total} ({Math.round((test.score / test.total) * 100)}%)
-                                                    </span>
+                                                <span className={`score-badge ${getScoreClass(test)}`}>
+                                                    {test.score}/{test.total} ({getDisplayPercent(test)}%)
+                                                </span>
                                             </td>
                                         </tr>
                                     ))}
