@@ -1,19 +1,16 @@
-/* src/styles/Vocabulary.css */
-
 .vocabulary {
     width: 100%;
 }
 
 .section-title {
-    font-size: 1.5rem; /* Збільшено розмір заголовка */
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1.5rem; /* Більше простору під заголовком */
+    margin-bottom: 1.5rem;
     color: #111827;
-    padding-bottom: 0.5rem; /* Додано відступ знизу */
-    border-bottom: 1px solid #e5e7eb; /* Додано розділову лінію */
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-/* Стилі форми додавання слів */
 .add-word-form {
     background-color: #f9fafb;
     border-radius: 0.375rem;
@@ -23,13 +20,13 @@
 
 .form-container {
     max-width: 100%;
-    overflow-x: hidden; /* Запобігає горизонтальному скролу */
+    overflow-x: hidden;
 }
 
 .form-row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem; /* Збільшено проміжок між полями */
+    gap: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
@@ -38,9 +35,9 @@
     flex-direction: column;
     margin-bottom: 0.5rem;
     width: 100%;
-    min-width: 0; /* Дозволяє скорочуватися до менше 100% батьківського елементу */
+    min-width: 0;
     max-width: 100%;
-    box-sizing: border-box; /* Ширина враховує padding і border */
+    box-sizing: border-box;
 }
 
 .form-label {
@@ -48,18 +45,18 @@
     font-size: 0.875rem;
     font-weight: 500;
     color: #4b5563;
-    margin-bottom: 0.5rem; /* Збільшено відступ під міткою */
+    margin-bottom: 0.5rem;
 }
 
 .form-input,
 .form-select {
     width: 100%;
-    padding: 0.75rem; /* Збільшено внутрішній відступ */
+    padding: 0.75rem;
     border: 1px solid #d1d5db;
-    border-radius: 0.375rem; /* Більш виразне заокруглення */
-    font-size: 1rem; /* Збільшено розмір шрифту */
+    border-radius: 0.375rem;
+    font-size: 1rem;
     margin-top: 0.25rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Додано легку тінь */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .form-input:focus,
@@ -79,7 +76,6 @@
     gap: 0.5rem;
 }
 
-/* Стілі стовпців таблиці */
 .word-column {
     width: 30%;
 }
@@ -96,7 +92,6 @@
     width: 15%;
 }
 
-/* Стилі кнопок */
 .btn {
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
@@ -138,7 +133,6 @@
     background-color: #4b5563;
 }
 
-/* Фільтри та пошук */
 .filters-container {
     display: flex;
     flex-direction: column;
@@ -149,13 +143,13 @@
 @media (min-width: 768px) {
     .form-row {
         grid-template-columns: repeat(3, 1fr);
-        gap: 2rem; /* Додатково збільшено проміжок для десктопних екранів */
+        gap: 2rem;
     }
 }
 
 @media (min-width: 1200px) {
     .form-container {
-        width: 95%; /* Трохи зменшити максимальну ширину на великих екранах */
+        width: 95%;
         margin: 0 auto;
     }
 }
@@ -198,17 +192,16 @@
 .words-table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* Забезпечує рівномірний розподіл ширини стовпців */
+    table-layout: fixed;
 }
 
 .words-table th,
 .words-table td {
     padding: 0.75rem 1rem;
     text-align: left;
-    min-width: 120px; /* Мінімальна ширина для кожної колонки */
+    min-width: 120px;
 }
 
-/* Додати більше простору для стовпців зі словом і перекладом */
 .words-table th:nth-child(1),
 .words-table td:nth-child(1),
 .words-table th:nth-child(2),
@@ -236,7 +229,7 @@
 .actions-cell {
     text-align: right;
     white-space: nowrap;
-    min-width: 100px; /* Мінімальна ширина для стовпця дій */
+    min-width: 100px;
 }
 
 .action-btn {

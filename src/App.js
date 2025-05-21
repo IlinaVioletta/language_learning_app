@@ -12,7 +12,6 @@ function App() {
         <div className="app-container">
             <Header />
 
-            {/* Навігація */}
             <div className="main-container">
                 <div className="tabs-navigation">
                     <button
@@ -35,7 +34,6 @@ function App() {
                     </button>
                 </div>
 
-                {/* Основний контент */}
                 <div className="content-container">
                     {activeTab === 'vocabulary' && <Vocabulary />}
                     {activeTab === 'test' && <Test />}

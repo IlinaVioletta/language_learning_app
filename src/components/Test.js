@@ -3,28 +3,25 @@ import '../styles/Test.css';
 
 function Test() {
     const [vocabularyWords, setVocabularyWords] = useState([]);
-    const [testMode, setTestMode] = useState(null); // 'choice', 'write'
+    const [testMode, setTestMode] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [userAnswer, setUserAnswer] = useState('');
     const [options, setOptions] = useState([]);
     const [result, setResult] = useState(null);
 
-    // Додаємо лічильник помилок до прогресу тесту
     const [testProgress, setTestProgress] = useState({
         current: 0,
         total: 0,
         correct: 0,
-        errors: 0 // Додали лічильник помилок
+        errors: 0
     });
 
     const [testComplete, setTestComplete] = useState(false);
     const [testHistory, setTestHistory] = useState(() => JSON.parse(localStorage.getItem('testHistory')) || []);
     const [categoryFilter, setCategoryFilter] = useState('all');
 
-    // Додаємо стан для відстеження слів, у яких були помилки
     const [errorWords, setErrorWords] = useState([]);
 
-    // Категорії для фільтрації
     const categories = [
         { id: 'general', name: 'Загальні' },
         { id: 'travel', name: 'Подорожі' },
@@ -33,24 +30,20 @@ function Test() {
         { id: 'tech', name: 'Технології' }
     ];
 
-    // Завантаження слів зі словника
     useEffect(() => {
         const words = JSON.parse(localStorage.getItem('vocabulary')) || [];
         setVocabularyWords(words);
     }, []);
 
-    // Збереження історії тестів
     useEffect(() => {
         localStorage.setItem('testHistory', JSON.stringify(testHistory));
         console.log("Збережена історія тестів:", testHistory);
     }, [testHistory]);
 
-    // Фільтрація слів за категорією
     const filteredWords = categoryFilter === 'all'
         ? vocabularyWords
         : vocabularyWords.filter(word => word.category === categoryFilter);
 
-    // Запуск тесту
     const startTest = (mode) => {
         if (filteredWords.length < 4) {
             alert('Для тесту потрібно мінімум 4 слова у вашому словнику!');
@@ -59,7 +52,7 @@ function Test() {
 
         setTestMode(mode);
         setTestComplete(false);
-        setErrorWords([]); // Очищуємо список слів з помилками
+        setErrorWords([]);
 
         setTestProgress({
             current: 1,
@@ -71,7 +64,6 @@ function Test() {
         generateQuestion(mode, 0);
     };
 
-    // Генерація нового питання
     const generateQuestion = (mode, questionIndex) => {
         const totalQuestions = Math.min(10, filteredWords.length);
 
@@ -80,14 +72,12 @@ function Test() {
             return;
         }
 
-        // Вибір випадкового слова
         const randomIndex = Math.floor(Math.random() * filteredWords.length);
         const selectedWord = filteredWords[randomIndex];
 
         let questionOptions = [];
 
         if (mode === 'choice') {
-            // Створення варіантів відповідей для режиму вибору
             questionOptions = generateOptions(selectedWord, filteredWords);
         }
 
@@ -97,12 +87,9 @@ function Test() {
         setResult(null);
     };
 
-    // Генерація варіантів відповідей для тесту з вибором
     const generateOptions = (correctWord, allWords) => {
-        // Додавання правильної відповіді
         const options = [correctWord.translated];
 
-        // Додавання неправильних варіантів
         while (options.length < 4 && options.length < allWords.length) {
             const randomIndex = Math.floor(Math.random() * allWords.length);
             const randomWord = allWords[randomIndex].translated;
@@ -112,13 +99,10 @@ function Test() {
             }
         }
 
-        // Перемішування варіантів
         return options.sort(() => Math.random() - 0.5);
     };
 
-    // Завершення тесту
     const finishTest = () => {
-        // Визначаємо фінальний рахунок і загальну кількість
         const finalScore = testProgress.correct;
         const finalTotal = testProgress.total;
         const displayPercent = Math.round((finalScore / finalTotal) * 100);
@@ -133,31 +117,25 @@ function Test() {
             displayPercent: displayPercent
         };
 
-        // Додаємо логування для відлагодження
         console.log("Результат тесту:", newTestResult);
 
-        // Додаємо результат до історії та оновлюємо стан
         const updatedHistory = [...testHistory, newTestResult];
         setTestHistory(updatedHistory);
 
-        // Зберігаємо в localStorage напряму для уникнення проблем з асинхронним оновленням стану
         localStorage.setItem('testHistory', JSON.stringify(updatedHistory));
 
         setTestComplete(true);
     };
 
-    // Перевірка відповіді
     const checkAnswer = () => {
         let isCorrect = false;
 
         if (testMode === 'choice') {
             isCorrect = userAnswer === currentQuestion.translated;
         } else if (testMode === 'write') {
-            // Перевірка з урахуванням регістру і пробілів
             isCorrect = userAnswer.trim().toLowerCase() === currentQuestion.translated.trim().toLowerCase();
         }
 
-        // Оновлення статистики слова
         const updatedWords = [...vocabularyWords];
         const wordIndex = updatedWords.findIndex(w =>
             w.original === currentQuestion.original && w.translated === currentQuestion.translated
@@ -168,7 +146,6 @@ function Test() {
                 updatedWords[wordIndex].correctCount = (updatedWords[wordIndex].correctCount || 0) + 1;
             } else {
                 updatedWords[wordIndex].incorrectCount = (updatedWords[wordIndex].incorrectCount || 0) + 1;
-                // Додаємо слово до списку слів з помилками
                 if (!errorWords.some(w => w.original === currentQuestion.original)) {
                     setErrorWords([...errorWords, currentQuestion]);
                 }
@@ -179,7 +156,6 @@ function Test() {
             localStorage.setItem('vocabulary', JSON.stringify(updatedWords));
         }
 
-        // Встановлення результату та оновлення прогресу
         setResult({
             isCorrect,
             correctAnswer: currentQuestion.translated
@@ -191,7 +167,6 @@ function Test() {
                 correct: prev.correct + 1
             }));
         } else {
-            // Збільшуємо лічильник помилок
             setTestProgress(prev => ({
                 ...prev,
                 errors: prev.errors + 1
@@ -199,7 +174,6 @@ function Test() {
         }
     };
 
-    // Перехід до наступного питання
     const nextQuestion = () => {
         setTestProgress(prev => ({
             ...prev,
@@ -209,12 +183,10 @@ function Test() {
         generateQuestion(testMode, testProgress.current);
     };
 
-    // Вибір відповіді в режимі вибору
     const selectOption = (option) => {
         setUserAnswer(option);
     };
 
-    // Відображення режиму вибору тесту
     if (!testMode) {
         return (
             <div className="test">
@@ -276,9 +248,7 @@ function Test() {
         );
     }
 
-    // Відображення результатів завершеного тесту
     if (testComplete) {
-        // Розраховуємо відсоток успішності
         const score = Math.round((testProgress.correct / testProgress.total) * 100);
 
         return (
@@ -300,7 +270,6 @@ function Test() {
                     </p>
                 </div>
 
-                {/* Додаємо відображення слів з помилками */}
                 {errorWords.length > 0 && (
                     <div className="error-words-container">
                         <h3 className="error-words-title">Слова, в яких були допущені помилки:</h3>
@@ -334,7 +303,6 @@ function Test() {
         );
     }
 
-    // Відображення тесту в процесі (choice або write)
     return (
         <div className="test-in-progress">
             <h2 className="section-title">

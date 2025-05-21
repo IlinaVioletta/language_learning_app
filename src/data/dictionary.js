@@ -1,8 +1,4 @@
-// Окремий файл з повним словником
-// src/data/dictionary.js
-
 export const fullDictionary = [
-    // Найуживаніші слова (рівень A1)
     { original: 'a', translated: 'неозначений артикль', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'about', translated: 'про', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'after', translated: 'після', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
@@ -24,7 +20,6 @@ export const fullDictionary = [
     { original: 'but', translated: 'але', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'by', translated: 'від, поруч', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
 
-    // Загальні іменники (рівень A1-A2)
     { original: 'book', translated: 'книга', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'car', translated: 'автомобіль', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'cat', translated: 'кіт', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
@@ -55,7 +50,6 @@ export const fullDictionary = [
     { original: 'world', translated: 'світ', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'year', translated: 'рік', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
 
-    // Важливі дієслова (рівень A1-A2)
     { original: 'arrive', translated: 'прибувати', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'become', translated: 'ставати', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'begin', translated: 'починати', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
@@ -87,7 +81,6 @@ export const fullDictionary = [
     { original: 'leave', translated: 'залишати', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'like', translated: 'подобатися', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
 
-    // Важливі прикметники (рівень A1-A2)
     { original: 'bad', translated: 'поганий', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'beautiful', translated: 'гарний', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'best', translated: 'найкращий', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
@@ -109,7 +102,6 @@ export const fullDictionary = [
     { original: 'full', translated: 'повний', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'good', translated: 'добрий', category: 'general', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
 
-    // Подорожі (рівень A2-B1)
     { original: 'accommodation', translated: 'житло', category: 'travel', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'adventure', translated: 'пригода', category: 'travel', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'airline', translated: 'авіакомпанія', category: 'travel', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
@@ -131,7 +123,6 @@ export const fullDictionary = [
     { original: 'gate', translated: 'вихід (в аеропорту)', category: 'travel', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'guide', translated: 'гід', category: 'travel', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
 
-    // Їжа (рівень A2-B1)
     { original: 'appetizer', translated: 'закуска', category: 'food', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'bake', translated: 'випікати', category: 'food', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'beverage', translated: 'напій', category: 'food', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
@@ -153,7 +144,6 @@ export const fullDictionary = [
     { original: 'restaurant', translated: 'ресторан', category: 'food', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'taste', translated: 'смак', category: 'food', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
 
-    // Бізнес (рівень B1-B2)
     { original: 'account', translated: 'рахунок', category: 'business', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'agreement', translated: 'угода', category: 'business', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'brand', translated: 'бренд', category: 'business', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
@@ -175,7 +165,6 @@ export const fullDictionary = [
     { original: 'profit', translated: 'прибуток', category: 'business', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'salary', translated: 'зарплата', category: 'business', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
 
-    // Технології (рівень B1-B2)
     { original: 'algorithm', translated: 'алгоритм', category: 'tech', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'app', translated: 'додаток', category: 'tech', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },
     { original: 'backup', translated: 'резервна копія', category: 'tech', dateAdded: new Date().toISOString(), correctCount: 0, incorrectCount: 0 },

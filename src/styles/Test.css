@@ -1,5 +1,3 @@
-/* src/styles/Test.css */
-
 .test {
     width: 100%;
 }
@@ -11,7 +9,6 @@
     color: #111827;
 }
 
-/* Вибір категорії */
 .category-chooser {
     margin-bottom: 1.5rem;
 }
@@ -39,7 +36,6 @@
     margin-top: 0.25rem;
 }
 
-/* Картки режимів тестів */
 .test-modes {
     display: grid;
     grid-template-columns: 1fr;
@@ -86,7 +82,6 @@
     width: 100%;
 }
 
-/* Стилі для тесту в процесі */
 .test-in-progress {
     width: 100%;
 }
@@ -131,20 +126,11 @@
     font-weight: 700;
 }
 
-/* Стилі для режиму з варіантами відповідей */
 .options-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.75rem;
 }
-
-/* Видаляємо/коментуємо цей медіа-запит, щоб варіанти завжди відображалися вертикально
-@media (min-width: 768px) {
-    .options-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-*/
 
 .option-button {
     padding: 0.75rem;
@@ -179,7 +165,6 @@
     cursor: default;
 }
 
-/* Стилі для режиму введення відповіді */
 .write-answer-container {
     margin-bottom: 1rem;
 }
@@ -198,7 +183,6 @@
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
 
-/* Повідомлення з результатом відповіді */
 .result-message {
     margin-top: 1rem;
     padding: 0.75rem;
@@ -215,7 +199,6 @@
     color: #b91c1c;
 }
 
-/* Кнопки дій */
 .test-actions {
     display: flex;
     justify-content: space-between;
@@ -252,7 +235,6 @@
     cursor: not-allowed;
 }
 
-/* Стилі для результатів тесту */
 .test-results {
     text-align: center;
     padding: 2rem 0;
@@ -298,7 +280,6 @@
     font-size: 1.25rem;
 }
 
-/* Стилі для тесту на співставлення */
 .matching-test {
     width: 100%;
 }
@@ -380,7 +361,6 @@
     cursor: default;
 }
 
-/* Стилі для відображення помилок */
 .error-counter {
     color: #ef4444;
     font-weight: 500;
@@ -392,7 +372,6 @@
     align-items: center;
 }
 
-/* Стилі для списку слів з помилками */
 .error-words-container {
     background-color: #fff1f2;
     border: 1px solid #fecdd3;
@@ -436,7 +415,6 @@
     color: #4b5563;
 }
 
-/* Стилі для тестових режимів - розширюємо на 3 картки */
 @media (min-width: 1024px) {
     .test-modes {
         grid-template-columns: repeat(3, 1fr);

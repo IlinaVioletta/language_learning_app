@@ -8,11 +8,8 @@ function Vocabulary() {
     const [translatedWord, setTranslatedWord] = useState('');
     const [category, setCategory] = useState('general');
     const [words, setWords] = useState(() => {
-        // Перевіряємо, чи є щось у localStorage
         const savedWords = JSON.parse(localStorage.getItem('vocabulary')) || [];
-        // Якщо словник порожній, використовуємо defaultVocabulary
         if (savedWords.length === 0) {
-            // Записуємо defaultVocabulary в localStorage
             localStorage.setItem('vocabulary', JSON.stringify(defaultVocabulary));
             return defaultVocabulary;
         }
@@ -22,7 +19,6 @@ function Vocabulary() {
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState('all');
 
-    // Категорії для словника
     const categories = [
         { id: 'general', name: 'Загальні' },
         { id: 'travel', name: 'Подорожі' },
@@ -35,7 +31,6 @@ function Vocabulary() {
         localStorage.setItem('vocabulary', JSON.stringify(words));
     }, [words]);
 
-    // Додавання нового слова
     const addWord = () => {
         if (originalWord.trim() && translatedWord.trim()) {
             const newWord = {
@@ -54,12 +49,9 @@ function Vocabulary() {
         }
     };
 
-    // Видалення слова
     const deleteWord = (index) => {
-        // Отримуємо слово для видалення з фільтрованого масиву
         const wordToDelete = filteredWords[index];
 
-        // Знаходимо його індекс у повному масиві
         const originalIndex = words.findIndex(word =>
             word.original === wordToDelete.original &&
             word.translated === wordToDelete.translated
@@ -72,12 +64,9 @@ function Vocabulary() {
         }
     };
 
-    // Початок редагування
     const startEditing = (index) => {
-        // Отримуємо слово для редагування з фільтрованого масиву
         const wordToEdit = filteredWords[index];
 
-        // Знаходимо його індекс у повному масиві
         const originalIndex = words.findIndex(word =>
             word.original === wordToEdit.original &&
             word.translated === wordToEdit.translated
@@ -91,7 +80,6 @@ function Vocabulary() {
         }
     };
 
-    // Збереження змін
     const saveEdit = () => {
         if (originalWord.trim() && translatedWord.trim() && editingIndex !== null) {
             const updatedWords = [...words];
@@ -110,7 +98,6 @@ function Vocabulary() {
         }
     };
 
-    // Скасування редагування
     const cancelEdit = () => {
         setEditingIndex(null);
         setOriginalWord('');
@@ -118,7 +105,6 @@ function Vocabulary() {
         setCategory('general');
     };
 
-    // Фільтрація слів
     const filteredWords = words.filter(word => {
         const matchesSearch = word.original.toLowerCase().includes(searchTerm.toLowerCase()) ||
             word.translated.toLowerCase().includes(searchTerm.toLowerCase());
@@ -132,7 +118,6 @@ function Vocabulary() {
         <div className="vocabulary">
             <h2 className="section-title">Мій словник</h2>
 
-            {/* Форма додавання/редагування слів */}
             <div className="add-word-form">
                 <div className="form-container">
                     <div className="form-row">
@@ -198,7 +183,6 @@ function Vocabulary() {
                 </div>
             </div>
 
-            {/* Фільтри та пошук */}
             <div className="filters-container">
                 <div className="category-filter">
                     <select
@@ -224,7 +208,6 @@ function Vocabulary() {
                 </div>
             </div>
 
-            {/* Таблиця слів */}
             <div className="table-container">
                 <table className="words-table">
                     <thead>

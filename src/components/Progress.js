@@ -4,31 +4,26 @@ import '../styles/Progress.css';
 function Progress() {
     const [vocabulary, setVocabulary] = useState([]);
     const [testHistory, setTestHistory] = useState([]);
-    const [statsView, setStatsView] = useState('general'); // 'general', 'words', 'tests'
+    const [statsView, setStatsView] = useState('general');
 
     useEffect(() => {
-        // Завантаження даних зі сховища
         const vocabData = JSON.parse(localStorage.getItem('vocabulary')) || [];
         const historyData = JSON.parse(localStorage.getItem('testHistory')) || [];
 
         setVocabulary(vocabData);
         setTestHistory(historyData);
 
-        // Виведемо дані для діагностики
         console.log("Завантажена історія тестів:", historyData);
     }, []);
 
-    // Загальна кількість слів
     const totalWords = vocabulary.length;
 
-    // Кількість слів за категоріями
     const wordsByCategory = vocabulary.reduce((acc, word) => {
         const category = word.category || 'uncategorized';
         acc[category] = (acc[category] || 0) + 1;
         return acc;
     }, {});
 
-    // Статистика тестів
     const totalTests = testHistory.length;
     const averageScore = totalTests > 0
         ? Math.round(testHistory.reduce((sum, test) => {
@@ -39,16 +34,13 @@ function Progress() {
         }, 0) / totalTests)
         : 0;
 
-    // Слова з найбільшою кількістю помилок
     const problemWords = [...vocabulary]
         .filter(word => (word.incorrectCount || 0) > 0)
         .sort((a, b) => (b.incorrectCount || 0) - (a.incorrectCount || 0))
-        .slice(0, 10); // Показуємо до 10 слів з помилками
+        .slice(0, 10);
 
-    // Останні 5 тестів
     const recentTests = [...testHistory].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
 
-    // Функція для визначення типу тесту
     const getTestTypeText = (mode) => {
         if (mode === 'choice') {
             return 'Тест з варіантами';
@@ -59,7 +51,6 @@ function Progress() {
         }
     };
 
-    // Функція для відображення відсотка результату
     const getDisplayPercent = (test) => {
         if (test.displayPercent !== undefined) {
             return test.displayPercent;
@@ -67,7 +58,6 @@ function Progress() {
         return Math.round((test.score / test.total) * 100);
     };
 
-    // Функція для визначення класу стилю результату
     const getScoreClass = (test) => {
         const percent = getDisplayPercent(test);
         if (percent >= 70) return 'good';
@@ -79,7 +69,6 @@ function Progress() {
         <div className="progress">
             <h2 className="section-title">Мій прогрес</h2>
 
-            {/* Вкладки для перемикання видів статистики */}
             <div className="progress-tabs">
                 <button
                     className={`progress-tab ${statsView === 'general' ? 'active' : ''}`}
@@ -101,23 +90,19 @@ function Progress() {
                 </button>
             </div>
 
-            {/* Загальна статистика */}
             {statsView === 'general' && (
                 <div className="general-stats">
                     <div className="stats-cards">
-                        {/* Картка зі статистикою словника */}
                         <div className="stat-card">
                             <div className="stat-value">{totalWords}</div>
                             <div className="stat-label">Всього слів у словнику</div>
                         </div>
 
-                        {/* Картка зі статистикою тестів */}
                         <div className="stat-card">
                             <div className="stat-value">{totalTests}</div>
                             <div className="stat-label">Пройдено тестів</div>
                         </div>
 
-                        {/* Картка із середнім результатом */}
                         <div className="stat-card">
                             <div className="stat-value">{averageScore}%</div>
                             <div className="stat-label">Середній результат</div>
@@ -125,7 +110,6 @@ function Progress() {
                     </div>
 
                     <div className="detailed-stats">
-                        {/* Слова з найбільшою кількістю помилок */}
                         <div className="problem-words-card">
                             <h3 className="card-title">Проблемні слова</h3>
 
@@ -148,7 +132,6 @@ function Progress() {
                             )}
                         </div>
 
-                        {/* Останні тести */}
                         <div className="recent-tests-card">
                             <h3 className="card-title">Останні тести</h3>
 
@@ -179,7 +162,6 @@ function Progress() {
                 </div>
             )}
 
-            {/* Статистика по словах */}
             {statsView === 'words' && (
                 <div className="words-stats">
                     <div className="categories-stats">
@@ -250,7 +232,6 @@ function Progress() {
                 </div>
             )}
 
-            {/* Історія тестів */}
             {statsView === 'tests' && (
                 <div className="tests-history">
                     {testHistory.length > 0 ? (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
-import '../styles/Settings.css'; // Використовуємо ті ж стилі, що і для налаштувань
+import '../styles/Settings.css';
 
 function Help({ onClose }) {
     return (
